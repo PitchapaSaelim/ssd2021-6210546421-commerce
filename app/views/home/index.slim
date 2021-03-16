@@ -1,0 +1,53 @@
+.row
+  .col-6
+    h1 G U C G I' S PRODUCTS
+  .col-6
+    .float-right
+      - if admin_signed_in?
+            span = current_admin.email
+            span.ml-3 = link_to 'Log out', destroy_admin_session_path, method: :delete
+      - else
+            span Welcome to GUCGI! Are you an admin?
+            span.ml-3 = link_to 'Sign in', admin_session_path, method: :post
+
+.row
+  .col
+    = form_tag root_path, method: :get do
+     = text_field_tag 'search', @search, placeholder: 'What are you looking for?',
+      class: 'form-control'
+
+.row.mt-2
+  .col
+    table.table.table-bordered.table-striped.table-hover
+      thead.thead-dark
+        tr
+          th ID
+          th Title
+          th Description
+          th Stock
+          th Action
+      tbody
+        - @products.each do |pr|
+          tr.hoverable-row
+            td = pr.id
+            td.font-weight-bold = pr.title
+            td = pr.description
+            td = pr.stock
+            td
+              span 
+                = link_to product_path(pr) do
+                  i.fas.fa-eye
+              span.ml-3
+                = link_to edit_product_path(pr) do
+                  i.fas.fa-pen
+              span.ml-3
+                = link_to product_path(pr), method: :delete, data: {confirm: "Are you sure?"} do
+                  i.fas.fa-trash
+
+.row
+  .col-6
+      = paginate @products
+  .col-6
+    .float-right
+      = link_to new_product_path do 
+        = button_tag 'Add Product', class: 'btn btn-primary'
