@@ -1,14 +1,16 @@
 .row
   .col-6
+    br
     h1 G U C G I' S PRODUCTS
+    hr
   .col-6
     .float-right
       - if admin_signed_in?
             span = current_admin.email
             span.ml-3 = link_to 'Log out', destroy_admin_session_path, method: :delete
       - else
-            span Welcome to GUCGI! Are you an admin?
-            span.ml-3 = link_to 'Sign in', admin_session_path, method: :post
+            span Welcome to G U C G I !
+            span.ml-3 = link_to 'Sign in as an administration', admin_session_path, method: :post
 
 .row
   .col
