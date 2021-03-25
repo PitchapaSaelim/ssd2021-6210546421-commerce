@@ -6,6 +6,7 @@
   .col-6
     .float-right
       - if admin_signed_in?
+            span You are the admin who logged in by  
             span = current_admin.email
             span.ml-3 = link_to 'Log out', destroy_admin_session_path, method: :delete
       - else
@@ -39,17 +40,20 @@
               span 
                 = link_to product_path(pr) do
                   i.fas.fa-eye
-              span.ml-3
-                = link_to edit_product_path(pr) do
-                  i.fas.fa-pen
-              span.ml-3
-                = link_to product_path(pr), method: :delete, data: {confirm: "Are you sure?"} do
-                  i.fas.fa-trash
+              - if admin_signed_in?
+                span.ml-3
+                  = link_to edit_product_path(pr) do
+                    i.fas.fa-pen
+                span.ml-3
+                  = link_to product_path(pr), method: :delete, data: {confirm: "Are you sure?"} do
+                    i.fas.fa-trash
+                  
 
 .row
   .col-6
       = paginate @products
-  .col-6
-    .float-right
-      = link_to new_product_path do 
-        = button_tag 'Add Product', class: 'btn btn-primary'
+  - if admin_signed_in?
+    .col-6
+      .float-right
+        = link_to new_product_path do 
+          = button_tag 'Add Product', class: 'btn btn-warning'
