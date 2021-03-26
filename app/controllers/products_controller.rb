@@ -5,6 +5,11 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     @products = Product.all
+
+    respond_to do |format|
+      format.html
+      format.csv{ send_data generate_csv(Product.all), file_name: 'products.csv' }
+    end
   end
 
   # GET /products/1 or /products/1.json
@@ -67,4 +72,11 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:title, :description, :stock, :category_ids=>[])
     end
+
+    def generate_csv(products)
+      products.map do |a|
+        [a.title, a.description].join(',')
+      end.join("\n")
+    end
+
 end

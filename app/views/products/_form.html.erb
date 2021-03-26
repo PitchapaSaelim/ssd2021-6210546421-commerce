@@ -15,22 +15,24 @@
     <%= form.label :title %>
     <%= form.text_area :title, class:"form-control" %>
   </div>
+  <br>
 
   <div class="field.form-group">
     <%= form.label :description %>
     <%= form.text_area :description, class:"form-control" %>
   </div>
-
+  <br>
   <div class="field.form-group">
     <%= form.label :stock %>
     <%= form.number_field :stock, class:"form-control" %>
   </div>
-
+  <br>
   <div class = "field.form-group"> 
     <%= form.label :categories %>
-    <%= form.collection_select :category_ids, Category.order(:name), :id, :name, {}, class:"form-control", multiple: true %>
+    <br>
+    <%= form.collection_check_boxes :category_ids, Category.order(:name), :id, :name%>
   </div>
-
+  
   <br>
   <div class="actions">
     <%= form.submit %>
