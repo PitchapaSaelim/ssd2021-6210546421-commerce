@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Status:</strong>
+  <%= @product.status %>
+</p>
+
+<p>
   <strong>Category:</strong>
   <% @product.categories.each do |category| %>
     <span href="#" class="badge badge-pill badge-info"><%= category.name %></span>

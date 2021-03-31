@@ -7,7 +7,7 @@
     .float-right
       - if admin_signed_in?
             span You are the admin who logged in as  
-            span = current_admin.email
+            span style="color:red" = current_admin.email 
             span.ml-3 = link_to 'Log out', destroy_admin_session_path, method: :delete
       - else
             span Welcome to G U C G I !
@@ -29,6 +29,7 @@
       thead.thead-dark
         tr
           th ID
+          th Status
           th Title
           th Description
           th Stock
@@ -37,20 +38,21 @@
         - @products.each do |pr|
           tr.hoverable-row
             td = pr.id
+            td style="color:#12DBDA" = pr.status
             td.font-weight-bold = pr.title
             td = pr.description
             td = pr.stock
             td
               span 
                 = link_to product_path(pr) do
-                  i.fas.fa-eye
+                  i.fas.fa-eye style="color:grey"
               - if admin_signed_in?
                 span.ml-3
                   = link_to edit_product_path(pr) do
-                    i.fas.fa-pen
+                    i.fas.fa-pen style="color:#0DC26C"
                 span.ml-3
                   = link_to product_path(pr), method: :delete, data: {confirm: "Are you sure?"} do
-                    i.fas.fa-trash
+                    i.fas.fa-trash style="color:red"
                   
 
 .row
@@ -61,3 +63,17 @@
       .float-right
         = link_to new_product_path do 
           = button_tag 'Add Product', class: 'btn btn-warning'
+
+- if admin_signed_in?
+  div
+    hr
+
+  .row
+    .col
+      span Upload new products by csv file
+      br
+      br
+      = form_tag products_csv_upload_path, multipart: true do
+        div = file_field_tag :csv_file
+        div = submit_tag :upload
+        hr

@@ -33,6 +33,12 @@
     <%= form.collection_check_boxes :category_ids, Category.order(:name), :id, :name%>
   </div>
   
+  <div class = "field.form-group"> 
+    <%= form.label :Status %>
+    <br>
+    <%= form.select :status, Product.statuses.keys.map {|u| [u.titleize, u]} %>
+  </div>
+  
   <br>
   <div class="actions">
     <%= form.submit %>
