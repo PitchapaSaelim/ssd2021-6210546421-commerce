@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product Image:</strong>
+  <%if @product.primary_image.attached?%>
+    <br>
+    <%= image_tag @product.primary_image, width: "200px", height: "200px"%>
+  <%end%>
+</p>
+
+<p>
+  <strong>Supporting Product Images:</strong>
+  <%if @product.supporting_images.attached?%>
+    <br>
+    <%@product.supporting_images.each do |img|%>
+      <%= image_tag img, width: "100px", height: "100px"%>
+    <%end%>
+  <%end%>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @product.title %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @product.status %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <% @product.categories.each do |category| %>
+    <span href="#" class="badge badge-pill badge-info"><%= category.name %></span>
+  <% end %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Stock:</strong>
+  <%= @product.stock %>
+</p>
+
+<%if admin_signed_in?%>
+  <%= link_to 'Edit', edit_admins_product_path(@product) %> |
+<%end%>
+<%= link_to 'Back', admins_products_path %>

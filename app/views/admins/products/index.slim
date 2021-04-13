@@ -1,0 +1,88 @@
+.row
+  .col-6
+    br
+    h1 style="font-family: serif-font" G U C G I' S PRODUCTS
+    hr
+  .col-6
+    .float-right
+      - if admin_signed_in?
+            span You are the admin who logged in as  
+            span style="color:red" = current_admin.email 
+            span.ml-3 = link_to 'Log out', destroy_admin_session_path, method: :delete
+      - else
+            span style="font-family: serif-font" Welcome to G U C G I !
+            span.ml-3 = link_to 'Sign in as an administration', admin_session_path, method: :post
+
+.row
+  .col
+    = form_tag admins_products_path, method: :get do
+     = text_field_tag 'search', @search, placeholder: 'What are you looking for?',
+      class: 'form-control'
+  - if admin_signed_in?
+    .col-2
+        = link_to admins_products_path(format: :csv) do
+          = button_tag 'Download CSV', class: 'btn btn-secondary float-right'
+
+.row.mt-2
+  .col
+    table.table.table-bordered.table-striped.table-hover
+      thead.thead-dark
+        tr
+          th ID
+          th Status
+          th Product Image
+          th Supporting Product Images
+          th Title
+          th Description
+          th Stock
+          th Action
+      tbody
+        - @products.each do |pr|
+          tr.hoverable-row
+            td = pr.id
+            td style="color:#12DBDA" = pr.status
+            td
+              - if pr.primary_image.attached?
+                = image_tag pr.primary_image, width: "150px", height: "150px"
+            td
+              - if pr.supporting_images.attached?
+                - pr.supporting_images.each do |img|
+                  = image_tag img, width: "100px", height: "100px"   
+            td.font-weight-bold = pr.title
+            td = pr.description
+            td = pr.stock
+            td
+              span 
+                = link_to admins_product_path(pr) do
+                  i.fas.fa-eye style="color:grey"
+              - if admin_signed_in?
+                span.ml-3
+                  = link_to edit_admins_product_path(pr) do
+                    i.fas.fa-pen style="color:#0DC26C"
+                span.ml-3
+                  = link_to admins_product_path(pr), method: :delete, data: {confirm: "Are you sure?"} do
+                    i.fas.fa-trash style="color:red"
+                  
+
+.row
+  .col-6
+      = paginate @products
+  - if admin_signed_in?
+    .col-6
+      .float-right
+        = link_to new_admins_product_path do 
+          = button_tag 'Add Product', class: 'btn btn-warning'
+
+- if admin_signed_in?
+  div
+    hr
+
+  .row
+    .col
+      span Upload new products by csv file
+      br
+      br
+      = form_tag admins_products_csv_upload_path, multipart: true do
+        div = file_field_tag :csv_file
+        div = submit_tag :upload
+        hr
