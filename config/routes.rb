@@ -5,10 +5,6 @@ Rails.application.routes.draw do
   root 'home#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  namespace :products do
-    post 'csv_upload'
-  end
-
   namespace :admins do
     resources :products
     namespace :products do
