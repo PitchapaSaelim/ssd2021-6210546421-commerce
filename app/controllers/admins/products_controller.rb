@@ -75,7 +75,7 @@ module Admins
         attr = line.split(",").map(&:strip)
         Product.create title: attr[0], description: attr[1], stock: attr[2]
       end
-      redirect_to admins_product_path
+      redirect_to admins_products_path
     end
 
     private
