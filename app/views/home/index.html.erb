@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>        
+    <form action=/ method="get">
+        <input id = @search  name= search placeholder= 'What are you looking for?' class= 'form-control' />
+    </form>
+    <br>
+     <!--Section: Products v.3-->
+      <section class="text-center mb-4">
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+
+          <!--Grid column-->
+          <div class="row justify-content-md-center">
+            <% @products.each do |pr| %>
+            <% if pr.primary_image.attached? %>
+            
+            <!--Card-->
+            <div class="card" >
+                
+                
+              <!--Card image-->
+              <div class="view overlay">
+                <%# <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top" alt=""> %>
+                <%= image_tag(pr.primary_image, height: '500px', width: '500px', class: 'mx-auto img-thumbnail') %>
+                <a>
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+              <!--Card image-->
+              <% end %>
+
+              <!--Card content-->
+              <div class="card-body text-center">
+                <!--Category & Title-->
+                <a href="/categories" class="badge badge-pill badge-light">
+                <% @categories.each do |category| %>
+                  <h5 style="font-size: 12px"><%= category.name %></h5>
+                <%end%>
+                </a>
+                <h5>
+                  <strong>
+                    <a class="dark-grey-text" style="font-family: serif-font; color: black"<%= link_to pr.title, admins_product_path(pr) %> 
+                      
+                    </a>
+                    <span class="badge badge-pill badge-danger" style="font-size: 12px"><%= pr.status %></span>
+                  </strong>
+                </h5>
+
+                <h4 class="desc-text" style="font-family: serif-font; font-size: 20px">
+                  <span><%= pr.description %></span> 
+                </h4>
+
+              </div>
+              <!--Card content-->
+            <a href="#" class="btn cart px-auto" style="color: white; background-color: black">ADD TO SHOPPING BAG</a>
+            </div>
+            <!--Card-->          
+
+            <% end %>
+            <div class="page">
+            <br>
+            <%= paginate @products %>
+            </div>
+          </div>
+          <!--Grid column-->
+
+</html>

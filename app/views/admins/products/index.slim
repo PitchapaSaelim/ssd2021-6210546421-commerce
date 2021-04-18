@@ -1,7 +1,7 @@
 .row
   .col-6
     br
-    h1 style="font-family: serif-font" G U C G I' S PRODUCTS
+    h1 style="font-family: serif-font" G U C G I ' S PRODUCTS
     hr
   .col-6
     .float-right
@@ -10,7 +10,7 @@
             span style="color:red" = current_admin.email 
             span.ml-3 = link_to 'Log out', destroy_admin_session_path, method: :delete
       - else
-            span style="font-family: serif-font" Welcome to G U C G I !
+            / span style="font-family: serif-font" Welcome to G U C G I !
             span.ml-3 = link_to 'Sign in as an administration', admin_session_path, method: :post
 
 .row
@@ -28,7 +28,7 @@
     table.table.table-bordered.table-striped.table-hover
       thead.thead-dark
         tr
-          th ID
+          / th ID
           th Status
           th Product Image
           th Supporting Product Images
@@ -39,7 +39,7 @@
       tbody
         - @products.each do |pr|
           tr.hoverable-row
-            td = pr.id
+            / td = pr.id
             td style="color:#12DBDA" = pr.status
             td
               - if pr.primary_image.attached?
