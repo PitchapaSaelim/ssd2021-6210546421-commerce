@@ -22,7 +22,7 @@
               <!--Card image-->
               <div class="view overlay">
                 <%# <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top" alt=""> %>
-                <%= image_tag(pr.primary_image, height: '500px', width: '500px', class: 'mx-auto img-thumbnail') %>
+                <%= link_to image_tag(pr.primary_image, height: '500px', width: '500px', class: 'mx-auto img-thumbnail'), admins_product_path(pr) %>
                 <a>
                   <div class="mask rgba-white-slight"></div>
                 </a>
