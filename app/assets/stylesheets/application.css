@@ -15,44 +15,263 @@
  */
 
  .hoverable-row:hover {
-    background-color: rgb(29, 112, 47);
-    cursor: pointer;
+  background-color: rgb(29, 112, 47);
+  cursor: pointer;
 }
 
 .hoverable-row:hover {
-    background-color: rgb(29, 112, 47);
+  background-color: rgb(29, 112, 47);
 }
 
 .slider {
-  background: rgb(0, 0, 0);
-  height: 400px;
-  width: 100%;
+background: rgb(0, 0, 0);
+height: 400px;
+width: 100%;
 }
 
 #logo {
-  background: #ccc;
-  width: 150px;
-  height: 70px;
+background: #ccc;
+width: 150px;
+height: 70px;
 }
 
 .navbar-toggler {
-  margin-top: 15px;
+margin-top: 15px;
 }
 
 @media screen and (min-width: 992px) {
-  .navbar {
-      height: 130px;
-   }
-  #logo {
-    width: 260px;
-    height: 120px;
-    position: relative;
-    bottom: -20px;
-  }
-  .navbar-light .navbar-nav .nav-link {
-    padding-right: 75px;
-  }
-  #nav-left {
-    padding-left: 30px;
-  }
+.navbar {
+    height: 130px;
+ }
+#logo {
+  width: 260px;
+  height: 120px;
+  position: relative;
+  bottom: -20px;
 }
+.navbar-light .navbar-nav .nav-link {
+  padding-right: 75px;
+}
+#nav-left {
+  padding-left: 30px;
+}
+}
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+/* @font-face {
+   font-family: Futura;
+   src: url('C:/Users/asus/AppData/Local/Microsoft/Windows/Fonts/futura_light_bt.ttf');
+} */
+
+body {
+   margin: 0;
+   padding: 0;
+   font-family: 'Open Sans', serif;
+   background: #AB47BC
+}
+
+.product {
+   position: relative;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 350px;
+   height: 350px;
+   /* box-shadow: 0 20px 40px rgba(0, 0, 0, .2); */
+   /* border-radius: 5px; */
+   background: #E6E6E6;
+   overflow: hidden
+   /* margin-left: 200px */
+}
+
+.product .imgbox {
+  /* position: static; */
+  height: 100%;
+   /* box-sizing: border-box */
+}
+
+.product .imgbox img {
+   display: block;
+   width: 100%;
+   margin: 10px auto 0
+}
+
+.specifies {
+   position: absolute;
+   width: 100%;
+   bottom: -160px;
+   background: rgba(255, 255, 255, 0.8);
+   padding: 10px;
+   box-sizing: border-box;
+   transition: .5s;
+   visibility: hidden;
+   /* opacity: 0.5; */
+}
+
+.product:hover .specifies {
+   bottom: 0;
+   visibility:visible;
+}
+
+.specifies h2 {
+   margin: 0;
+   padding: 0;
+   font-size: 15px;
+   /* width: 100%; */
+   /* margin-block-start: 0.83em;
+   margin-block-end: 0.83em; */
+   /* margin-inline-start: 0px;
+   margin-inline-end: 0px; */
+   letter-spacing: 3px;
+   font-variant-ligatures: none;
+   line-height: 20px;
+   text-transform: initial;
+   font-family: Futura, Helvetica, Arial, sans-serif !important; 
+   font-weight: 200; 
+   font-style: normal; 
+   -webkit-font-smoothing: antialiased; 
+   -webkit-tap-highlight-color: transparent; 
+   -webkit-text-size-adjust: none; 
+   color: #313131;
+   margin-left: auto;
+   margin-right: auto;
+   width: 50%;
+
+}
+
+.specifies .shop-this {
+   font-size: 10px;
+   color: #b1b1b1;
+   font-weight: normal
+}
+
+.specifies .price {
+   position: absolute;
+   top: 12px;
+   right: 25px;
+   font-weight: bold;
+   color: #000;
+   font-size: 30px
+}
+
+label {
+   display: block;
+   margin-top: 5px;
+   font-weight: bold;
+   font-size: 15px
+}
+.grid-container {
+   display: block;
+   /* margin-top: 200px; */
+   place-items: center;
+   place-self: center;
+   align-items: center;
+   position: flex;
+   grid-template-columns: auto auto auto;
+   text-align: center;
+   justify-items: center;
+ }
+
+.box-container {
+   display: grid;
+   grid-template-columns: auto auto auto;
+   background: #E6E6E6;
+}
+ 
+.page {
+   position: relative;
+   margin-left: auto;
+   margin-right: auto;
+   text-align: center;
+   place-items: center;
+   place-self: center;
+   align-items: center;
+   padding: 0;
+   list-style: none;
+   width: 50%;
+   display: center;
+}
+.pagination {
+   position: relative;
+   margin-left: auto;
+   margin-right: auto;
+   padding: 0;
+   list-style: none;
+   width: 50%;
+   display: center;
+}
+
+.page-link {
+   position: relative;
+   display: block;
+   padding: .75rem .75rem;
+   margin-left: -1px;
+   line-height: 1.25;
+   width: max-content;
+   color: #738394 !important;
+   background-color: #fff;
+   border: 1px solid #dee2e6;
+}
+.page-item.active .page-link{
+   color: #738394 !important;
+   background-color: #ffffff !important;
+   border-color: #738394 !important;
+}
+
+.shop-this {
+   color: #6e6e6e !important;
+}
+/* 
+ul {
+   display: flex;
+   margin: 0;
+   padding: 0
+}
+
+ul li {
+   list-style: none;
+   margin: 5px 5px 0;
+   font-size: 15px;
+   font-style: normal;
+   color: #ccc
+}
+
+ul li:first-child {
+   margin-left: 0
+}
+
+ul.colors li {
+   width: 15px;
+   height: 15px
+}
+
+ul.colors li:nth-child(1) {
+   background: #4A148C
+}
+
+ul.colors li:nth-child(2) {
+   background: #F50057
+}
+
+ul.colors li:nth-child(3) {
+   background: #536DFE
+}
+
+ul.colors li:nth-child(4) {
+   background: #388E3C
+}
+
+ul.colors li:nth-child(5) {
+   background: #FF6D00
+}
+
+.btn {
+   display: block;
+   padding: 5px;
+   color: #fff;
+   margin: 10px 0 0;
+   width: 100%;
+   font-size: 13px;
+   border-radius: 2px
+} */
