@@ -176,7 +176,7 @@ label {
 .box-container {
    display: grid;
    grid-template-columns: auto auto auto;
-   background: #E6E6E6;
+   background: #ffffff;
 }
  
 .page {
