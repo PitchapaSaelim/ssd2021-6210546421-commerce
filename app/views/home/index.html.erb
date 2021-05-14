@@ -33,6 +33,8 @@
                   <div class="shop-this">
                     <br>
                     <%= link_to "SHOP THIS >" , admins_product_path(pr), class: 'shop-this'%>
+                    <br>
+                    <%= link_to 'BUY NOW', orders_new_path(:id => pr.id), class: "btn cart px-auto" %>
                   </div>
             </div>
             <!--specifies-->
